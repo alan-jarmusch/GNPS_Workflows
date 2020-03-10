@@ -13,7 +13,7 @@
             <validator type="email"/>
         </parameter>
         <!-- Search file parameters -->
-        <parameter name="spec_on_server" label="MS2 MGF File">
+        <parameter name="spec_on_server" label="MS2 File MGF/MSP(Progenesis QI)/mzML(MzTab-M)">
             <validator type="required"/>
             <fileGenerator type="upload" purpose="spectrum" target="spec"/>
         </parameter>
@@ -179,6 +179,18 @@
         </parameter>
 
 
+        <!-- Qiime2 Options -->
+        <parameter name="QIIME2_PCOA_DISTANCE" label="PCoA Distance Metric">
+            <options>
+                <option value="cosine" label="cosine"/>
+                <option value="braycurtis" label="braycurtis"/>
+                <option value="euclidean" label="euclidean"/>
+                <option value="jaccard" label="jaccard"/>
+            </options>
+            <validator type="set"/>
+            <default value="cosine"/>
+        </parameter>
+
 
     </parameters>
 
@@ -193,7 +205,7 @@
             </cell>
             <cell>
                 <module id="spec_on_server" type="fileSelector">
-                    <property name="label">MS2 spectral summary file (MGF format)</property>
+                    <property name="label">MS2 File MGF/MSP(Progenesis QI)/mzML(MzTab-M)</property>
                 </module>
             </cell>
         </row>
@@ -566,6 +578,24 @@
             </cell>
         </row>
     </block>
+
+    <block label="Advanced Multivariate Statistics Options">
+        <row>
+            <cell>
+                <label>
+                    <content parameter="QIIME2_PCOA_DISTANCE"/>
+                    <tooltip id="QIIME2_PCOA_DISTANCE_gnps_tooltip">
+                        PCoA Distance Selection
+                    </tooltip>
+                </label>
+            </cell>
+
+            <cell>
+                <input type="select" parameter="QIIME2_PCOA_DISTANCE"></input>
+            </cell>
+        </row>
+    </block>
+    
 
     <block label="Advanced External Tools">
         <row>
